@@ -8,6 +8,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/team')
+def team():
+    return render_template("team.html")
+
 
 @app.route('/result', methods=['GET', 'POST'])
 def result():
@@ -20,4 +24,4 @@ def result():
 
 if __name__ == '__main__':
     import os
-    app.run(debug=False, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+    app.run(debug=False, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)), processes=2)
