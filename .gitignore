@@ -1,0 +1,9 @@
+#byte compiled files
+__pycache__/
+*.py[cod]
+
+#C extensions
+*.so
+
+#idea config - pycharm
+.idea/
