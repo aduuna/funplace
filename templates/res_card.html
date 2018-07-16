@@ -1,14 +1,14 @@
 <!-- reseult card expects a response object-->
 		  
-<div class="row">
-<div class="card" style="width:100rem;">
+<div class="col-lg-12">
+<div class="card" >
 
   <div class="card-body">
      <p class="card-text">{{ res.name }}</p>
      <p class="card-text text-info">{{ res.category }}</p>
      <p class="card-text text-muted">{{ res.address }}</p>
 
-    <button type="submit" class="btn btn-primary ">
+    <button class="btn btn-primary ">
             <a href="{{ res.mapslink }}" style="color:white">Get direction</a>
     </button>
   </div>

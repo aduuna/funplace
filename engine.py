@@ -78,7 +78,7 @@ def get_item_list(response):
 def clean(place_item):
     """build a simpler dictionary of the place item"""
     cleaned_place_item = {}
-    mapslink = ""
+    mapslink = 'https://www.google.com/maps/dir/?api=1&lat={}&lng={}'
     try:
         cleaned_place_item['name'] = place_item['venue']['name']
         cleaned_place_item['category'] = place_item['venue']['categories'][0]['name']

@@ -8,6 +8,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/team')
+def team():
+    return render_template('team.html')
+
 
 @app.route('/result', methods=['GET', 'POST'])
 def result():
