@@ -10,7 +10,7 @@ def index():
 
 @app.route('/team')
 def team():
-    return render_template("team.html")
+    return render_template("tteam.html")
 
 
 @app.route('/result', methods=['GET', 'POST'])
