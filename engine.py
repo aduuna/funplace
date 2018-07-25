@@ -30,7 +30,7 @@ def geocode(address):
             lat = response['results'][0]['geometry']['location']['lat']
             lng = response['results'][0]['geometry']['location']['lng']
             return lat, lng
-        except KeyError:
+        except (KeyError, IndexError):
             print('WARNING: geocode failed! Trying Again...')
             continue
 
@@ -78,7 +78,7 @@ def get_item_list(response):
 def clean(place_item):
     """build a simpler dictionary of the place item"""
     cleaned_place_item = {}
-    mapslink = 'https://www.google.com/maps/dir/?api=1&lat={}&lng={}'
+    mapslink = 'https://www.google.com/maps/dir/?api=1&destination={},{}'
     try:
         cleaned_place_item['name'] = place_item['venue']['name']
         cleaned_place_item['category'] = place_item['venue']['categories'][0]['name']
@@ -87,16 +87,17 @@ def clean(place_item):
             place_item['venue']['location']['lat'],
             place_item['venue']['location']['lng']
         )
-    except IndexError:
-        print('WARNING: There was a problem cleaning the response')
-        return place_item
+    except (IndexError, KeyError):
+        print('WARNING: There was a problem cleaning the response \n '
+              'WARNING: Cleaned Response object will be empty')
+        return {}
 
     return cleaned_place_item
 
 
 def filter_results(result_dict):
     place_list = get_item_list(result_dict)
-    cleaned_place_list = map(clean, place_list)
+    cleaned_place_list = filter(None, map(clean, place_list))
     return cleaned_place_list
 
 
